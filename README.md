@@ -15,5 +15,5 @@
 ### Links
 
 * [RoadRunner home page](https://www.acmesystems.it/roadrunner)
-* [RoadRunner devdoc](ttps://www.acmesystems.it/doc_roadrunner)
-* [RoadRunner buy](ttps://www.acmesystems.it/catalog_roadrunner)
+* [RoadRunner devdoc](https://www.acmesystems.it/doc_roadrunner)
+* [RoadRunner buy](https://www.acmesystems.it/catalog_roadrunner)
