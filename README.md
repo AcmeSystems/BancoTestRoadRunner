@@ -10,6 +10,7 @@
 
 * [trrSer.py](trrSer.py) Programma di test nuovo
 * [trrRob.py](trrRob.py) Programma di test precedente
+* [trrlib.py](trrlib.py) Funzioncine varie
 * [solo_gpio.py](solo_gpio.py) Test delle sole linee di GPIO
 
 ### Links
