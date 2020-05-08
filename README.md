@@ -13,18 +13,18 @@
 * [trrlib.py](trrlib.py) Funzioncine varie
 * [solo_gpio.py](solo_gpio.py) Test delle sole linee di GPIO
 
-## Esempio GPIO out con libreria mpio
+## Esempio GPIO output con libreria mpio
 
 	from mpio import GPIO
 	from trrlib import pin2id
-	import time
+	from time import sleep
 
 	gpio = GPIO(pin2id("PA17"), GPIO.OUT)
 	gpio.set(True)
-	time.sleep(1)   
+	sleep(1)   
 	gpio.set(False)
 
-## Esempio GPIO in con libreria mpio
+## Esempio GPIO input con libreria mpio
 
 	from mpio import GPIO
 	from trrlib import pin2id
