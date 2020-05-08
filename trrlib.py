@@ -1,6 +1,6 @@
 # Elenco di pin che vengono testati a coppie
 
-testpairs = [ 
+testlistpullup = [ 
 	["PA30","PA14"],
 	["PC9","PB7"],
 	["PC11","PC21"],

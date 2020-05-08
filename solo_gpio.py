@@ -1,10 +1,10 @@
 import mpio
 import time
-from trrlib import testpairs
+from trrlib import testlistpullup
 from trrlib import pin2id
 
 counter=0
-for pin in testpairs:
+for pin in testlistpullup:
 	test=True;
 	
 	gpio_out = mpio.GPIO(pin2id(pin[0]), mpio.GPIO.OUT)
