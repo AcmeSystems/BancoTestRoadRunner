@@ -1,3 +1,5 @@
+# Elenco di pin che vengono testati a coppie
+
 testpairs = [ 
 	["PA30","PA14"],
 	["PC9","PB7"],

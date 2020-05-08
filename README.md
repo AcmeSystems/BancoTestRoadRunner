@@ -13,8 +13,29 @@
 * [trrlib.py](trrlib.py) Funzioncine varie
 * [solo_gpio.py](solo_gpio.py) Test delle sole linee di GPIO
 
+## Esempio GPIO out con libreria mpio
+
+	from mpio import GPIO
+	from trrlib import pin2id
+	import time
+
+	gpio = GPIO(pin2id("PA17"), GPIO.OUT)
+	gpio.set(True)
+	time.sleep(1)   
+	gpio.set(False)
+
+## Esempio GPIO in con libreria mpio
+
+	from mpio import GPIO
+	from trrlib import pin2id
+
+	gpio = GPIO(pin2id("PA17"), GPIO.IN)
+	print gpio.get()
+
 ### Links
 
 * [RoadRunner home page](https://www.acmesystems.it/roadrunner)
 * [RoadRunner devdoc](https://www.acmesystems.it/doc_roadrunner)
 * [RoadRunner buy](https://www.acmesystems.it/catalog_roadrunner)
+* [Microchip Peripheral I/O Python Package](https://www.acmesystems.it/roadrunner_mpio)
+
