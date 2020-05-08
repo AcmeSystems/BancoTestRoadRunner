@@ -1,7 +1,6 @@
 # Banco di test per RoadRunner
 
 ![RoadRunner](roadrunner.jpg)
-Format: ![RoadRunner](www.acmesystems.it/roadrunner)
 
 ## Ambiente
 
