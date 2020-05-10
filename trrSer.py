@@ -34,6 +34,14 @@ color_check = "\x1B[31m"
 numerrors = 0
 step = 0
 
+# initialize the ADC
+adc0 = mpio.ADC(0)
+adc1 = mpio.ADC(1)
+
+# read channel 0's level
+print "ADC value: %d" % adc0.voltage_raw(0)
+print "ADC value: %d" % adc1.voltage_raw(0)
+
 """
 #***********************************************************************
 # Test ADC
@@ -217,8 +225,8 @@ print ""
 
 print "Test Ethernet"
 
-
-if os.system("ping -c 2 192.168.16.1")==0:
+if os.system("ping -c 2 192.168.1.44")==0:
+#if os.system("ping -c 2 192.168.16.1")==0:
 	print color_pass + "ETH test OK" + color_normal
 	error_eth = 0
 else:
@@ -234,7 +242,7 @@ else:
 
 if (numerrors == 0):
 	print "Test Mantenimento data"
-	if os.system("date -s '04/13/2020 09:30:00'")==0:
+	if os.system("date -s '2020-05-08 09:30:00'")==0:
 		print color_pass + "Date set OK" + color_normal
 		error_eth = 0                                
 	else:
@@ -247,6 +255,8 @@ if (numerrors == 0):
 		numerrors = numerrors+1
 	os.system("date") 
 	os.system("echo `date '+%s' -d '+ 9 seconds'` > /sys/class/rtc/rtc0/wakealarm")	
-	os.system("shutdown -h now")
-print "fine test."
+	#os.system("shutdown -h now")
+	os.system("poweroff")
 """
+
+print "fine test."
