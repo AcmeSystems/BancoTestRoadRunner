@@ -142,7 +142,7 @@ else:
 	print (color_pass + "AD11 OK! %s (420..1220)" + color_normal) % (test)
 """
 
-
+"""
 #***********************************************************************
 # Test GPIO
 #***********************************************************************
@@ -247,6 +247,8 @@ sleep(0.1)
 sleep(0.1)
 os.system("date")
 sleep(1.0)
+"""
+
 
 """
 #***********************************************************************
@@ -308,14 +310,13 @@ else:
 	error_eth = 1
 """
 
-"""
 #***********************************************************************
 # Test Mantenimento data      
 #***********************************************************************
 
 if (numerrors == 0):
 	print "Test Mantenimento data"
-	if os.system("date -s '2020-05-08 09:30:00'")==0:
+	if os.system("date -s '2020-05-08 00:00:00'")==0:
 		print color_pass + "Date set OK" + color_normal
 		error_eth = 0                                
 	else:
@@ -327,9 +328,7 @@ if (numerrors == 0):
 		print color_warning + "hwclock NOK" + color_normal
 		numerrors = numerrors+1
 	os.system("date") 
-	#os.system("echo `date '+%s' -d '+ 9 seconds'` > /sys/class/rtc/rtc0/wakealarm")	
-	os.system("echo '+9' > /sys/class/rtc/rtc0/wakealarm")	
+	os.system("echo '+10' > /sys/class/rtc/rtc0/wakealarm")	
 	os.system("poweroff")
-"""
 
 print "fine test."
