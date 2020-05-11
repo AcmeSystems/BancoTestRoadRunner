@@ -254,8 +254,8 @@ if (numerrors == 0):
 		print color_warning + "hwclock NOK" + color_normal
 		numerrors = numerrors+1
 	os.system("date") 
-	os.system("echo `date '+%s' -d '+ 9 seconds'` > /sys/class/rtc/rtc0/wakealarm")	
-	#os.system("shutdown -h now")
+	#os.system("echo `date '+%s' -d '+ 9 seconds'` > /sys/class/rtc/rtc0/wakealarm")	
+	os.system("echo '+9' > /sys/class/rtc/rtc0/wakealarm")	
 	os.system("poweroff")
 """
 
