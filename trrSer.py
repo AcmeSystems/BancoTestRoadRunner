@@ -1,6 +1,3 @@
-from trrlib import testlistpullup
-from trrlib import pin2id
-
 import mpio
 
 from time import sleep
@@ -9,6 +6,88 @@ import os
 import subprocess
 
 print("RoadRunner text bench 2.1")
+
+# Elenco di pin che vengono testati a coppie
+
+testlistpullup = [ 
+	["PA30","PA14"],
+	["PC9","PB7"],
+	["PC11","PC21"],
+	["PC23","PD18"],
+	["PD5","PD14"],
+	["PD17","PD15"],
+	["PD16","PD11"],
+	["PD6","PD11"],
+	["PD24","PD28"],
+	["PB6","PB10"],
+	["PD23","PD31"],
+	["PC8", "PA7"],
+	["PA2", "PA4"],
+	["PA26","PA29"],
+	["PA3", "PA10"],
+	["PA1", "PA23"],
+	["PA15","PA27"],
+	["PB0", "PA24"],
+	["PA31","PA25"],
+	["PB31","PB29"],
+	["PB27","PB25"],
+	["PB30","PB28"],
+	["PB26","PB24"],
+	["PD25","PD27"],
+	["PD26","PC5"],
+	["PC7", "PC4"],
+	["PC3", "PA5"],
+	["PC6", "PA0"],
+	["PA9", "PA16"],
+	["PA12","PA16"],
+	["PC2", "PC1"],
+	["PC0", "PA6"],
+	["PA8", "PA11"],
+	["PA13","PA17"],
+	["PB11","PB4"],
+	["PB3", "PB2"],
+	["PD4", "PC30"],
+	["PC15","PC13"],
+	["PC19","PC17"],
+	["PC27","PC25"],
+	["PB13","PB12"],
+	["PB5","PB1"],
+	["PC31","PC14"],
+	["PC12","PC10"],
+	["PC20","PC18"],
+	["PC16","PC26"],
+	["PC24","PC22"],
+	["PD19","PD20"],
+	["PD21","PD22"],
+	["PB8","PB9"],
+	["PC28","PC29"],
+	["PD1","PD0"],
+	["PD12","PD9"],
+	["PD13","PD8"],
+	["PD10","PD7"],
+]
+
+def pin2id(pinname):
+
+	"""
+	Return the Kernel ID of any Pin using the MCU name
+	or the board name
+	"""
+
+	offset=None
+	if pinname[0:2]=="PA":
+		offset=0
+	if pinname[0:2]=="PB":
+		offset=32
+	if pinname[0:2]=="PC":
+		offset=64
+	if pinname[0:2]=="PD":
+		offset=96
+
+	if offset==None:
+		return None
+	else:	
+		return offset+int(pinname[2:4])
 
 # Pag 459 datasheet SAMA5D2 for configuration registers
 # segnali PD14 .. PD18 sono assegnati con fuse a Periph A (JTAG)
@@ -35,31 +114,27 @@ numerrors = 0
 step = 0
 
 # initialize the ADC
-adc0 = mpio.ADC(0)
-adc1 = mpio.ADC(1)
+adc = mpio.ADC(0)
 
 # read channel 0's level
-print "ADC value: %d" % adc0.voltage_raw(0)
-print "ADC value: %d" % adc1.voltage_raw(0)
+print "ADC value: %d" % adc.value(10)
+print "ADC value: %d" % adc.value(11)
 
 """
 #***********************************************************************
 # Test ADC
 #***********************************************************************
-os.system("cp /sys/bus/iio/devices/iio\:device0/in_voltage10_raw ad10")
-adc10 = subprocess.check_output(["cat", "ad10"])
-test = [int(s) for s in adc10.split() if s.isdigit()][0]  #estrae il numero
-#print "adc10 = %s" % test
+
+test = adc.value(10)
+print "adc10 = %s" % test
 if test<1200 or test>2000:
 	print (color_warning + "Error AD10! %s (1200..2000)" + color_normal) % (test)
 	numerrors = numerrors+1
 else:
 	print (color_pass + "AD10 OK! %s (1200..2000)" + color_normal) % (test)
 	
-os.system("cp /sys/bus/iio/devices/iio\:device0/in_voltage11_raw ad11")
-adc11 = subprocess.check_output(["cat", "ad11"])
-test = [int(s) for s in adc11.split() if s.isdigit()][0]  #estrae il numero
-#print "adc11 = %s" % test
+test = adc.value(11)
+print "adc11 = %d" % test
 if test<420 or test>1220:
 	print (color_warning + "Error AD11! %s (420..1220)" + color_normal) % (test)
 	numerrors = numerrors+1
@@ -67,7 +142,7 @@ else:
 	print (color_pass + "AD11 OK! %s (420..1220)" + color_normal) % (test)
 """
 
-"""
+
 #***********************************************************************
 # Test GPIO
 #***********************************************************************
@@ -164,7 +239,6 @@ sleep(0.1)
 
 #error_counter = 0
 
-
 #print "fine test gpio : while True ..."
 
 #while True:
@@ -173,7 +247,6 @@ sleep(0.1)
 sleep(0.1)
 os.system("date")
 sleep(1.0)
-"""
 
 """
 #***********************************************************************
